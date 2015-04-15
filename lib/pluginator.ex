@@ -1,0 +1,2 @@
+defmodule Pluginator do
+end

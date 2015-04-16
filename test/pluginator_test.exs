@@ -17,7 +17,7 @@ defmodule PluginatorTest do
   
   # Does not pass for some reason. Error is raised. 
   test "Pluginator.load raises error when plugin doesn't exist" do 
-     assert_raise RuntimeError, Pluginator.load("sidehill_gouger")
+     assert_raise RuntimeError, fn -> Pluginator.load("sidehill_gouger") end
   end
 
   test "Pluginator.load" do

@@ -6,8 +6,22 @@ defmodule Pluginator do
 
   @doc """
     load_with_signature("plugin_name",function_signature,load_paths)
-    returns the module loaded from "plugin_name" that implements all
-    the functions in the signature. 
+    returns the first module loaded from "plugin_name" that implements all
+    the functions in the signature. It returns one of four tuples
+
+    {:ok, Module}
+    {:error, :plugin_already_loaded}
+    {:error, :plugin_not_found}
+    {:error, :sig_not_found}
+
+    The signature should be exactly the same format as the return value of
+    Module.__info__(:functions)
+
+    ## Examples
+
+      > {:ok, truth } = Pluginator.load_with_signature("truth",[success: 0, failure: 0],"path/to/plugins")
+      truth.success
+
   """
   def load_with_signature(plugin,signature,paths) do 
     status = load(plugin,paths)
